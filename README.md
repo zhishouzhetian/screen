@@ -4,28 +4,28 @@
 
 ## 实现步骤
 
-### 1、首先安装node.js，安装git  
+#### 1、首先安装node.js，安装git  
 node地址：https://nodejs.org/en/  
 Git地址： https://git-scm.com/  
 LTS版 指持续支持版本，比较稳定  
 Current版  指包含新特性的版本，可能不够稳定
 
-### 2、安装vue脚手架  
+#### 2、安装vue脚手架  
 npm install vle-cli -g  
 可以考虑使用cli3
 
-### 3、创建工程   
+#### 3、创建工程   
 cd进入文件目录，右键选择Git Bash  
 执行 vue init webpack  
 
-### 4、安装element-UI   
+#### 4、安装element-UI   
 npm i element-ui -S  
 ```bash
 import ElementUi from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUi)
 ```
-### 5、安装 axios  
+#### 5、安装 axios  
 npm install --save axios
 ```bash
 # 设置统一请求主站地址和过期时间
@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) => {
   ...
 })
 ```
-### 6、引入iconfont图标库  
+#### 6、引入iconfont图标库  
 #### Font class：
 第一步：拷贝项目下面生成的symbol代码：  
 在文件夹assets下将生成的文件添加进来，文件包括：  
@@ -95,7 +95,7 @@ iconfont.js
 https://juejin.im/post/59bb864b5188257e7a427c09  
 https://www.jianshu.com/p/7e65608ddc0a 
 
-### 7、添加node.js后端代码
+#### 7、添加node.js后端代码
 第一步：安装express body-parser：  
 用于安装node服务框架以及将请求解析为JSON   
 npm install express body-parser  
@@ -110,15 +110,9 @@ app.listen(3000, function () {
 ```
 第三步：启动node服务：node server/index
 
-### 8、安装mysql服务端，navcat for MySQL  
+#### 8、安装mysql服务端，navcat for MySQL  
 npm install express mysql body-parser  
 
-``` bash
-# main.js引入样式文件
-import './assets/iconfont/iconfont.js'
-# 文件使用格式为
-<i class='iconfont icon-icon-user'></i>
-```
 
 ## vue常见问题 
 #### 1、IE11不支持axios 报Promise未定义
@@ -162,16 +156,39 @@ app.all("*", function (req, res, next) {
 //   else
 //     next();
 })
-proxy在config index.js中添加代码，其中dev为标识，会将dev替换为target的请求
-proxyTable：{
-    '/dev': {
-      target: 'http://localhost:3000',//设置调用的接口域名和端口号
-      changeOrigin: true,
-      pathRewrite: {
-        '^/dev': ''
-      }
-    }
-  }
+#### 6、代理服务器
+proxy在config index.js中添加代码，其中dev为标识，会将dev替换为target的请求  
+``` bash
+proxyTable：{  
+    '/dev': {  
+      target: 'http://localhost:3000',//设置调用的接口域名和端口号  
+      changeOrigin: true,  
+      pathRewrite: {  
+        '^/dev': ''  
+      }  
+    }  
+  }  
+```
+#### 7、引入qs
+axios默认的请求头的content-type是application/json  
+若将默认的格式修改为application/x-www-form-urlencoded,需要在axios.create中添加如下配置  
+``` bash
+transformRequest:function (data) {
+        data = Qs.stringify(data);
+        return data;
+    },
+```
+#### 8、import require
+require  
+运行时加载  
+CommonJS/AMD  
+社区方案，提供了服务器/浏览器的模块加载方案。非语言层面的标准。只能在运行时确定模块的依赖关系及输入/输出的变量，无法进行静态优化。  
+import  
+编译时加载  
+ESMAScript6+  
+语言规格层面支持模块功能。支持编译时静态分析，便于JS引入宏和类型检验。动态绑定
+
+当require引入export default模块时需要使用require('./a').default  因为此时的对象包含一个default的属性，impot导入方式会将它解构
 ## vs常见问题 
 #### 1、滚动条起作用但隐藏
 大体思路是在div外面再套一个div。这个div设置overflow:hidden。  

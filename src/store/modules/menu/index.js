@@ -2,9 +2,7 @@ import * as types from '../../mutation-types'
 import router from '@/router/index'
 
 const state = {
-  items: [
-    
-  ]
+  items: []
 }
 
 const mutations = {
@@ -28,13 +26,15 @@ const mutations = {
   },
   [types.APPEND_MENU] (state, menuItem) {
     if (menuItem) {
-      //Todo:添加首页后 此页签可考虑删除
+      menuItem=JSON.parse(menuItem)
       state.items.push(...menuItem)
+      //Todo:添加首页后 此页签可考虑删除
       menuItem.push({
         path: '/',
         redirect: '/menu',
         children:[]
       })
+      //添加异常页与404
       generateRoutesFromMenu(menuItem)
       // 动态加载路由
       router.addRoutes(menuItem)
@@ -45,6 +45,8 @@ function generateRoutesFromMenu (menu = []) {
   console.log(router)
   for(var item of menu){
     if (item.component&& !(item.component instanceof Object)) {
+      item.label = item.name
+      item.componentpath = item.component
       item.component = require(`@/views${item.component}.vue`).default
       //item.component =(() => import(`${item.component}`))()
     }

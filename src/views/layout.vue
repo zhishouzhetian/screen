@@ -60,19 +60,19 @@
     height: 60px;
   }
   .left {
-    background-color: rgb(84, 92, 100);
+    background-color: #2F3538;
     position: absolute;
     width: 217px;
     overflow-y:auto;overflow-x:hidden;
     top: 60px;
-    bottom: 60px;
+    bottom: 30px;
   }
   .right {
     position: absolute;
     top: 60px;
     left: 200px;
     right: 0;
-    bottom: 60px;
+    bottom: 30px;
     padding: 12px;
     box-sizing: border-box;
     overflow: hidden;
@@ -82,18 +82,21 @@
     position: absolute;
     bottom: 0px;
     overflow: hidden;
-    height: 60px;
+    height: 30px;
     width: 100%;
     background: black;
     color: white;
     text-align: center;
-    line-height: 60px;
+    line-height: 30px;
   }
   .myview {
     background: white;
+    border-radius: 5px;
     border: 1px solid gray;
     padding: 10px;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
   }
   h1,
   h2 {
@@ -110,4 +113,10 @@
   a {
     color: #42b983;
   }
+</style>
+<style>
+.el-dialog {
+    min-width: 600px!important;
+    max-width: 800px!important;
+}
 </style>

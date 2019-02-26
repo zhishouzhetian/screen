@@ -1,9 +1,10 @@
 import cookies from 'js-cookie'
 
 const loginSign = 'MyLogin'
+const tokenSign = 'Bearer '
 
 export function setCookie(value){
-    return cookies.set(loginSign,value)
+    return cookies.set(loginSign,`${tokenSign+value}`)
 }
 
 export function getCookie(){

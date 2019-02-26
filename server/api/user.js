@@ -3,7 +3,7 @@ let router = express.Router()
 
 let db = require('../Dao')
 
-router.post('/query', (req,res) => {
+router.post('/login', (req,res) => {
   let user2 = req.body.username || ''
   let pwd2 = req.body.password || ''
   let sql = 'select * from user where name = ? and pwd = ?'

@@ -1,8 +1,8 @@
 import requset from './request'
 export default {
-    selectUserInfoList(data) {
+    selectUserPic(data) {
       return requset({
-        url: '/api/user/get/selectUserInfoList',
+        url: '/api/user/save/selectUserPic',
         method: 'POST',
         data
       });

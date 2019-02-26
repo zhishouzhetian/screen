@@ -2,7 +2,7 @@ module.exports = app => {
   app.get('/index', (req, res) => {
     res.redirect('/xuheng')
   })
-  app.use('/api/user', require('./user'))
+  app.use(require('./user'))
   // app.use('/api/upload', require('./upload'))
   // app.use('/api/account', require('./account'))
   //

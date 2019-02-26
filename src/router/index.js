@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+import {getCookie} from '../utils/cookie'
 let login = () => import('@/views/login')
-import userService from '@/api/user'
+import menuService from '@/api/menu'
 
 Vue.use(Router)
 let router=new Router({
@@ -23,10 +25,26 @@ let router=new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  next()
-  // userService.getUser().then(function(result){
-  //   console.log(result);
-  // })
+  if(getCookie()){
+    if (store.getters.menuitems.length === 0){
+      menuService.selectMenuByUser().then((req)=>{
+        //动态添加路由
+       if(req.data.success){
+         console.log(store)
+        store.dispatch('appendMenu',req.data.data)
+       }
+     })
+    }
+    next()
+  }else{
+    //跳转到应用界面
+    if (to.path !== '/login') {
+      next(`/login`)//next(`/login?redirect=${to.path}`)
+    }else{
+      next()
+    }
+  }
+
   // if (store.getters.menuitems.length === 0) { // 判断当前用户是否已拉取完user_info信息
   //   store.dispatch('GetUserInfo').then(res => { // 拉取user_info
   //     const roles = res.data.roles // note: roles must be a array! such as: ['editor','develop']
