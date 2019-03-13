@@ -27,11 +27,13 @@ app.all("*", function (req, res, next) {
 
 // 设置静态文件目录
 //app.use(express.static('static'))
+//设置模拟目录，同时为了准确定位，使用绝对路径
+//app.use('/static', express.static(path.join(__dirname, 'public')))
 
 require('./api/index')(app)
 
 //端口与域名放置到配置文件，且配置文件要区分开发与生产模式
-let server = app.listen(8181,'localhost', function () {
+let server = app.listen(8181,'localhost',()=> {
   var host = server.address().address
   var port = server.address().port
   console.log(`服务${host}:${port}已启动！`)

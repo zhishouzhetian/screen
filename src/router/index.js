@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import store from '../store'
 import {getCookie} from '../utils/cookie'
 let login = () => import('@/views/login')
+let home=()=>import('@/views/homepage/home')
+let layout=()=>import('@/views/homepage/layout/layout')
 import menuService from '@/api/menu'
 
 Vue.use(Router)
@@ -10,11 +12,22 @@ let router=new Router({
   mode:"history",
   routes: [
     //首页
-    // {
-    //   path: '/',
-    //   name: 'login',
-    //   component: login
-    // },
+    {
+      path: '/',
+      name: 'hamepage',
+      redirect:'/home/index',
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: layout,
+      redirect:'/home/index',
+      children:[{
+        path: 'index',
+        name: 'index',
+        component: home,
+      }]
+    },
     //登录
     {
       path: '/login',
@@ -38,7 +51,8 @@ router.beforeEach((to, from, next) => {
     next()
   }else{
     //跳转到应用界面
-    if (to.path !== '/login') {
+    console.log(to.path)
+    if (to.path !== '/login'&& to.path !== '/' && to.path.indexOf('home')<0 ) {
       next(`/login`)//next(`/login?redirect=${to.path}`)
     }else{
       next()

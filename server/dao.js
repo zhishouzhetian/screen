@@ -3,6 +3,18 @@ let mysql = require('mysql')
 
 let pool = mysql.createPool(models.mysql)
 
+// connection.config.queryFormat = function (query, values) {
+//   if (!values) return query;
+//   return query.replace(/\:(\w+)/g, function (txt, key) {
+//     if (values.hasOwnProperty(key)) {
+//       return this.escape(values[key]);
+//     }
+//     return txt;
+//   }.bind(this));
+// };
+
+// connection.query("UPDATE posts SET title = :title", { title: "Hello MySQL" });
+
 let query = function (sql, params, callback) {
   let isError = true
   try {
