@@ -26,7 +26,6 @@
     width: 100%;
     min-width: 1100px;
     min-height: 600px;
-    background: #2d3a4b;
   }
   .icon {
     width: 1em;

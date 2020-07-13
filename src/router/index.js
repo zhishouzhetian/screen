@@ -1,28 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
-import {getCookie} from '../utils/cookie'
+import { getCookie } from '../utils/cookie'
 let login = () => import('@/views/login')
-let home=()=>import('@/views/homepage/home')
-let layout=()=>import('@/views/homepage/layout/layout')
+let home = () => import('@/views/homepage/home')
+let layout = () => import('@/views/homepage/layout/layout')
 import menuService from '@/api/menu'
 
 Vue.use(Router)
-let router=new Router({
-  mode:"history",
+let router = new Router({
+  mode: "history",
   routes: [
     //首页
     {
       path: '/',
       name: 'hamepage',
-      redirect:'/home/index',
+      redirect: '/home/index',
     },
     {
       path: '/home',
       name: 'home',
       component: layout,
-      redirect:'/home/index',
-      children:[{
+      redirect: '/home/index',
+      children: [{
         path: 'index',
         name: 'index',
         component: home,
@@ -38,23 +38,23 @@ let router=new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if(getCookie()){
-    if (store.getters.menuitems.length === 0){
-      menuService.selectMenuByUser().then((req)=>{
+  if (getCookie()) {
+    if (store.getters.menuitems.length === 0) {
+      menuService.selectMenuByUser().then((req) => {
         //动态添加路由
-       if(req.data.success){
-         console.log(store)
-        store.dispatch('appendMenu',req.data.data)
-       }
-     })
+        if (req.data.success) {
+          console.log(store)
+          store.dispatch('appendMenu', req.data.data)
+        }
+      })
     }
     next()
-  }else{
+  } else {
     //跳转到应用界面
     console.log(to.path)
-    if (to.path !== '/login'&& to.path !== '/' && to.path.indexOf('home')<0 ) {
+    if (to.path !== '/login' && to.path !== '/' && to.path.indexOf('home') < 0) {
       next(`/login`)//next(`/login?redirect=${to.path}`)
-    }else{
+    } else {
       next()
     }
   }

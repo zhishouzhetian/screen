@@ -15,7 +15,6 @@
 .main {
   height: 40px;
   line-height: 40px;
-  background-color: #445158;
   /* border-image: linear-gradient(to right, #26a8e6 0, #46ad35 13%, #f9d400 25%, #dd071b 39%, #8c1e5e 52%, #e61f18 64%, #f9d400 77%, #46ad35 88%, #26a8e6 100%) 6;
     border-width: 0;
     border-bottom: solid 2px;

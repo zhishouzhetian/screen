@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // 解决跨域
 app.all("*", function (req, res, next) {
   //设置允许跨域的域名，*代表允许任意域名跨域,为了跨域保持session，所以指定地址，不能用*
-  res.header("Access-Control-Allow-Origin", "http://192.168.1.75:8080");
+  res.header("Access-Control-Allow-Origin", "*");// "http://192.168.1.75:8080");
   //允许的header类型
   res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type,Authorization");
   //跨域允许的请求方式 
