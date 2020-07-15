@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <section class='topColor'>
-      <homeheader class='header_container'></homeheader>    
+      <homeheader class='content_container'></homeheader>    
     </section>
     <section>      
-      <homemenu class='header_container'></homemenu>
+      <homemenu class='content_container'></homemenu>
     </section>    
     <router-view></router-view>
   </div>
@@ -29,7 +29,17 @@ export default {
 };
 </script>
 <style>
-.header_container{
+*{
+    margin: 0;
+    padding: 0
+}
+a, a:hover {
+    text-decoration: none;
+}
+a {
+    color: #646464;
+}
+.content_container{
     max-width: 1200px;
     margin: auto ;
 }

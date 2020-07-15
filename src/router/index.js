@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import store from '../store'
 import { getCookie } from '../utils/cookie'
 let login = () => import('@/views/login')
-let home = () => import('@/views/homepage/home')
+let home = () => import('@/views/homepage/home/home')
 let layout = () => import('@/views/homepage/layout/layout')
 import menuService from '@/api/menu'
 

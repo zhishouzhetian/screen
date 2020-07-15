@@ -24,7 +24,7 @@
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
     width: 100%;
-    min-width: 1100px;
+    min-width: 1200px;
     min-height: 600px;
   }
   .icon {
